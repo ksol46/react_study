@@ -1,7 +1,8 @@
-import EventPractice from "./EventPractice";
+//import EventPractice from "./EventPractice";
+//import "./ValidateSample";
 
 function App() {
-  return <EventPractice />;
+  return <IterationSample />;
 }
 
 export default App;
