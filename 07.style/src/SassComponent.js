@@ -1,14 +1,18 @@
+import React from "react";
+import "./SassComponent.scss";
+
 const SassComponent = () => {
   return (
     <div className="SassComponent">
-      <div ClassName="box red"></div>
-      <div ClassName="box orange"></div>
-      <div ClassName="box yellow"></div>
-      <div ClassName="box green"></div>
-      <div ClassName="box blue"></div>
-      <div ClassName="box indigo"></div>
-      <div ClassName="violet"></div>
-      <div ClassName="hover"></div>
+      <div className="box red"></div>
+      <div className="box orange"></div>
+      <div className="box yellow"></div>
+      <div className="box green"></div>
+      <div className="box blue"></div>
+      <div className="box indigo"></div>
+      <div className="box violet"></div>
     </div>
   );
 };
+
+export default SassComponent;
