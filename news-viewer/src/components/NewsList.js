@@ -19,7 +19,7 @@ const NewsListBlock = styled.div`
   }
 `;
 
-const NewsList = ({ category }) => {
+const NewsList = ({ category }) {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -29,38 +29,24 @@ const NewsList = ({ category }) => {
   //최초 렌더링 될 때, category의 값이 바뀔 때 실행
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        const query = category === "all" ? "" : `${category}`;
-        const reponse = await axios.get(
+        const query = category === "all" ? "" : `&category=${category}`;
+        const response = await axios.get(
           `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=2f4938b7e1d64f9faa9f193035435acf`
         );
 
-        console.log(reponse.data.articles);
-      } catch (e) {
-        console.log(e);
-      }
-    };
+        setArticles(response.data.articles);
+      } catch (e) {}
+        setLoading(false);
+      };
+      fetchData();
   }, [category]);
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const query = category === "all" ? "" : `${category}`;
-      const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=2f4938b7e1d64f9faa9f193035435acf`
-      );
-      setArticles(reponse.data.articles);
-    } catch (e) {
-      console.log(e);
-    }
-    setLoading(false);
-  };
 
-  fetchData{();
-}, [category]};
-
+//대기 중일 때
 if (loading) {
-  return <NewsListBlock></NewsListBlock>;
+  return <NewsListBlock>대기 중...</NewsListBlock>;
 }
 
 //articles의 값이 아직 설정이 안됐을때
@@ -70,8 +56,8 @@ if (!articles) {
 
   return (
     <NewsListBlock>
-      {articles.map((articles)=>(
-        <NewsItem key={articles.url} article={article}><NewsItem>
+      {articles.map((article)=>(
+        <NewsItem key={article.url} article={article} />
       ))}
     </NewsListBlock>
   );

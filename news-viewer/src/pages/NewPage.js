@@ -6,10 +6,9 @@ import NewsList from "../components/NewsList";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const NewsPage = () => {
+const NewPage() {
   const params = useParams();
   const category = params.category || "all";
-  console.log(category);
 
   return (
     <>
@@ -19,4 +18,4 @@ const NewsPage = () => {
   );
 };
 
-export default NewsPage;
+export default NewPage;
